@@ -59,6 +59,8 @@ Both functions share the following input arguments:
 
 To run the thermal micromechanics analysis using an 80 × 80 subvolume mesh, a matrix thermal conductivity of 0.5 W/(m·K), an inclusion thermal conductivity of 4.5 W/(m·K), and a 60% inclusion volume fraction (`0.6`), while generating the 2D total temperature field surface and extracting temperature profiles at subvolumes 35 (along $y_1$) and 45 (along $y_2$), execute either of the following commands in the MATLAB Command Window:
 
+```matlab
+
 % Energy-Based Formulation
 FVDAMThermal_EB(80, 80, 0.5, 4.5, 0.6, 1, 35, 45);
 
