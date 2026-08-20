@@ -36,8 +36,8 @@ While these two theories take distinct mathematical routes, they are strictly eq
 ### Syntax
 
 The `FVDAMThermal_MF.m` and `FVDAMThermal_EB.m` functions compute the effective thermal conductivity matrix and plot the 2D temperature field for a composite material with a circular inclusion. Additionally, they extract the 1D micro-fields at specified cross-sections.
-* FVDAMThermal_MF(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
-* FVDAMThermal_EB(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
+* `FVDAMThermal_MF(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)`
+* `FVDAMThermal_EB(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)`
 
 ---
 ##  Inputs parameters declaration - FVDAM
