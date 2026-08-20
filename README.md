@@ -97,7 +97,7 @@ The command above will also generate the following plots:
 
 ## ❌ Reporting issues
 
-We strive to ensure that this Finite-Volume Theory implementation is accurate and efficient. However, if you encounter any unexpected behavior, inconsistencies, or potential bugs in the code, your feedback is highly appreciated.
+We strive to ensure that this FVDAM implementation is accurate and efficient. However, if you encounter any unexpected behavior, inconsistencies, or potential bugs in the code, your feedback is highly appreciated.
 
 Please feel free to reach out via email:
 📩 diogo.santos@ctec.ufal.br
