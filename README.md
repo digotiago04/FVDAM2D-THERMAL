@@ -36,16 +36,16 @@ While these two theories take distinct mathematical routes, they are strictly eq
 ### Syntax
 
 The `FVDAMThermal_MF.m` and `FVDAMThermal_EB.m` functions compute the effective thermal conductivity matrix and plot the 2D temperature field for a composite material with a circular inclusion. Additionally, they extract the 1D micro-fields at specified cross-sections, directly comparing both the numerical profiles and the calculated effective conductivity against analytical results obtained from LEHT.
-* FVDAMThermal_MF(nx, ny, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
-* FVDAMThermal_EB(nx, ny, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
+* FVDAMThermal_MF(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
+* FVDAMThermal_EB(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
 
 
 **Table 2:** Inputs parameters' declaration - FVT
 ---
 | Parameter | Description | Values |
 | :---: | :--- | :---: |
-| **`nx`** | Number of sub volumes in the $x_1$ direction. | `50, 100, 150, ...` |
-| **`ny`** | Number of sub volumes in the $x_2$ direction. | `50, 100, 150, ...` |
+| **`ny1`** | Number of sub volumes in the $y_1$ direction. | `50, 100, 150, ...` |
+| **`ny2`** | Number of sub volumes in the $y_2$ direction. | `50, 100, 150, ...` |
 | **`k_m`** | Thermal conductivity of the matrix phase. | `> 0` |
 | **`k_i`** | Thermal conductivity of the inclusion phase. | `> 0` |
 | **`frac`** | Volume fraction of the circular inclusion. | `[0.05, 0.75]` |
@@ -56,20 +56,31 @@ The `FVDAMThermal_MF.m` and `FVDAMThermal_EB.m` functions compute the effective 
 
 ### Usage Example
 
-To run the analysis using a $150 \times 150$ mesh, with a matrix conductivity of $0.5 \ W/(m \cdot ^\circ C)$, inclusion conductivity of $4.5 \ W/(m \cdot ^\circ C)$, and a volume fraction of 60 %, while also generating the 2D temperature field and extracting profiles at $x_1 = 0.25$ and $x_2 = 0.55$, execute the following command:
+To run the thermal micromechanics analysis using an 80 × 80 subvolume mesh, a matrix thermal conductivity of 0.5 W/(m·K), an inclusion thermal conductivity of 4.5 W/(m·K), and a 60% inclusion volume fraction (`0.6`), while generating the 2D total temperature field surface and extracting temperature profiles at subvolumes 35 (along $y_1$) and 45 (along $y_2$), execute either of the following commands in the MATLAB Command Window:
 
-* energy_based(150, 150, 0.5, 4.5, 0.6, 1, 0.25, 0.55)
+```matlab
+% Energy-Based Formulation
+FVDAMThermal_EB(80, 80, 0.5, 4.5, 0.6, 1, 35, 45);
+
+% Mean-Field Formulation
+FVDAMThermal_MF(80, 80, 0.5, 4.5, 0.6, 1, 35, 45);
+
 
 ***Command Window Output:***
 ```text
 ====================================================
 EFFECTIVE THERMAL CONDUCTIVITY MATRICES (K*)
 ====================================================
-(FVT - BASED ON ENERGY THEORY) =
-    1.4752    0.0000
-    0.0000    1.4752
+FVDAM - ENERGY BASED 
+    1.1824   -0.0000
+   -0.0000    1.1824
 
-```
+====================================================
+EFFECTIVE THERMAL CONDUCTIVITY MATRICES (K*)
+====================================================
+FVDAM - MEAN-FIELD 
+    1.1824   -0.0000
+   -0.0000    1.1824```
 
 ***Graphical Results:***
 
