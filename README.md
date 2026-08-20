@@ -39,10 +39,8 @@ The `FVDAMThermal_MF.m` and `FVDAMThermal_EB.m` functions compute the effective 
 * FVDAMThermal_MF(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
 * FVDAMThermal_EB(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
 
-
-**Table 2:** Inputs parameters' declaration - FVDAM
 ---
-## Function Parameters
+##  Inputs parameters declaration - FVDAM
 
 Both functions share the following input arguments:
 
