@@ -65,7 +65,7 @@ FVDAMThermal_EB(80, 80, 0.5, 4.5, 0.6, 1, 35, 45);
 % Mean-Field Formulation
 FVDAMThermal_MF(80, 80, 0.5, 4.5, 0.6, 1, 35, 45);
 
-
+```matlab
 ***Command Window Output:***
 
 ====================================================
