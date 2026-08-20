@@ -70,7 +70,7 @@ FVDAMThermal_MF(80, 80, 0.5, 4.5, 0.6, 1, 35, 45);
 
 
 ***Command Window Output:***
-```text
+
 ====================================================
 EFFECTIVE THERMAL CONDUCTIVITY MATRICES (K*)
 ====================================================
