@@ -40,19 +40,22 @@ The `FVDAMThermal_MF.m` and `FVDAMThermal_EB.m` functions compute the effective 
 * FVDAMThermal_EB(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
 
 
-**Table 2:** Inputs parameters' declaration - FVT
+**Table 2:** Inputs parameters' declaration - FVDAM
 ---
-| Parameter | Description | Values |
-| :---: | :--- | :---: |
-| **`ny1`** | Number of sub volumes in the $y_1$ direction. | `50, 100, 150, ...` |
-| **`ny2`** | Number of sub volumes in the $y_2$ direction. | `50, 100, 150, ...` |
-| **`k_m`** | Thermal conductivity of the matrix phase. | `> 0` |
-| **`k_i`** | Thermal conductivity of the inclusion phase. | `> 0` |
-| **`frac`** | Volume fraction of the circular inclusion. | `[0.05, 0.75]` |
-| **`field`** | Enables or disables the plotting of the total 2D temperature field. | `0` (disable) or `1` (enable) |
-| **`SVy1_cut`** | Coordinate to extract the vertical temperature profile. | `0` (disable) or `0 < SVy1_cut <= ny1 ` |
-| **`SVy2_cut`** | Coordinate to extract the horizontal temperature profile. | `0` (disable) or `0 < SVy2_cut <= ny2` |
+## Function Parameters
 
+Both functions share the following input arguments:
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `ny1` | `int` | Number of subvolumes along the $y_1$ direction. |
+| `ny2` | `int` | Number of subvolumes along the $y_2$ direction. |
+| `k_m` | `float` | Thermal conductivity of the matrix material $[\text{W}/(\text{m}\cdot\text{K})]$. |
+| `k_i` | `float` | Thermal conductivity of the circular inclusion $[\text{W}/(\text{m}\cdot\text{K})]$. |
+| `frac` | `float` | Inclusion volume fraction ($0 \le \text{frac} < 1$). |
+| `field` | `int` | Flag to generate the 2D total temperature surface plot (`1` = active, `0` = disabled). |
+| `SVy1_cut` | `int` | Subvolume index along $y_1$ to extract the vertical temperature profile. |
+| `SVy2_cut` | `int` | Subvolume index along $y_2$ to extract the horizontal temperature profile. |
 
 ### Usage Example
 
