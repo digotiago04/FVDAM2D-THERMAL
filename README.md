@@ -108,7 +108,7 @@ Your contributions help improve the reliability and usability of this project fo
 
 ## 📚 Authors
 Project developed by:
-* Diogo Tiago dos Santos 📩 diogo.santos@ctec.ufal.br
-* Márcio André Araújo Cavalcante 📩 marcio.cavalcante@ceca.ufal.br
-* Romildo dos Santos Escarpini Filho 📩 romildo.escarpini@penedo.ufal.br
-* Arnaldo dos Santos Júnior 📩 arnaldo@ctec.ufal.br
+* Diogo Tiago dos Santos
+* Prof. Dr. Márcio André Araújo Cavalcante
+* Prof. Dr. Romildo dos Santos Escarpini Filho
+* Dr. Arnaldo dos Santos Júnior
