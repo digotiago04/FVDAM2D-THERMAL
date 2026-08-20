@@ -55,22 +55,21 @@ Both functions share the following input arguments:
 | `SVy1_cut` | `int` | Subvolume index along $y_1$ to extract the vertical temperature profile. |
 | `SVy2_cut` | `int` | Subvolume index along $y_2$ to extract the horizontal temperature profile. |
 
-Markdown
 ### Usage Example
 
 To run the thermal micromechanics analysis using an 80 × 80 subvolume mesh, a matrix thermal conductivity of 0.5 W/(m·K), an inclusion thermal conductivity of 4.5 W/(m·K), and a 60% inclusion volume fraction (`0.6`), while generating the 2D total temperature field surface and extracting temperature profiles at subvolumes 35 (along $y_1$) and 45 (along $y_2$), execute either of the following commands in the MATLAB Command Window:
 
 ```matlab
-
 % Energy-Based Formulation
 FVDAMThermal_EB(80, 80, 0.5, 4.5, 0.6, 1, 35, 45);
 
 % Mean-Field Formulation
 FVDAMThermal_MF(80, 80, 0.5, 4.5, 0.6, 1, 35, 45);
+```
 
-Plaintext
-***Command Window Output:***
+**Command Window Output:**
 
+```text
 ====================================================
 EFFECTIVE THERMAL CONDUCTIVITY MATRICES (K*)
 ====================================================
@@ -83,7 +82,9 @@ EFFECTIVE THERMAL CONDUCTIVITY MATRICES (K*)
 ====================================================
 FVDAM - MEAN-FIELD 
     1.1824   -0.0000
-   -0.0000    1.1824```
+   -0.0000    1.1824
+```
+
 
 ***Graphical Results:***
 
