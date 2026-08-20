@@ -23,7 +23,7 @@ The implementation of this tool was entirely developed in the MATLAB environment
 
 ---
 ## ▶️ Running the code
-FVT is a numerical approach based on the spatial discretization of the RUC into subvolumes (finite volumes). To calculate the effective thermal conductivity  this repository offers **two distinct mathematical formulations:**
+FVDAM is a numerical approach based on the spatial discretization of the RUC into subvolumes (finite volumes). To calculate the effective thermal conductivity  this repository offers **two distinct mathematical formulations:**
 
 * **Based on Mean-Field Theory:** Mean-field theory is based on the principle that the effective thermal properties observed experimentally arise from averaging relationships between local fields (temperature gradients and heat fluxes) within microscopically heterogeneous materials. Consequently, the macroscopic fields are defined as volume averages of their corresponding microscopic fields, and the effective thermal properties emerge naturally from these average relations.
 
@@ -35,9 +35,9 @@ While these two theories take distinct mathematical routes, they are strictly eq
 
 ### Syntax
 
-The `mean_field.m` and `energy_based.m` functions compute the effective thermal conductivity matrix and plot the 2D temperature field for a composite material with a circular inclusion. Additionally, they extract the 1D micro-fields at specified cross-sections, directly comparing both the numerical profiles and the calculated effective conductivity against analytical results obtained from LEHT.
-* mean_field(nx, ny, k_m, k_i, frac, field, x_cut, y_cut)
-* energy_based(nx, ny, k_m, k_i, frac, field, x_cut, y_cut)
+The `FVDAMThermal_MF.m` and `FVDAMThermal_EB.m` functions compute the effective thermal conductivity matrix and plot the 2D temperature field for a composite material with a circular inclusion. Additionally, they extract the 1D micro-fields at specified cross-sections, directly comparing both the numerical profiles and the calculated effective conductivity against analytical results obtained from LEHT.
+* FVDAMThermal_MF(nx, ny, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
+* FVDAMThermal_EB(nx, ny, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
 
 
 **Table 2:** Inputs parameters' declaration - FVT
@@ -50,8 +50,8 @@ The `mean_field.m` and `energy_based.m` functions compute the effective thermal 
 | **`k_i`** | Thermal conductivity of the inclusion phase. | `> 0` |
 | **`frac`** | Volume fraction of the circular inclusion. | `[0.05, 0.75]` |
 | **`field`** | Enables or disables the plotting of the total 2D temperature field. | `0` (disable) or `1` (enable) |
-| **`x_cut`** | Coordinate to extract the vertical temperature profile (compared with LEHT). | `0` (disable) or `0 < x_cut <= 1` |
-| **`y_cut`** | Coordinate to extract the horizontal temperature profile (compared with LEHT). | `0` (disable) or `0 < y_cut <= 1` |
+| **`SVy1_cut`** | Coordinate to extract the vertical temperature profile. | `0` (disable) or `0 < SVy1_cut <= ny1 ` |
+| **`SVy2_cut`** | Coordinate to extract the horizontal temperature profile. | `0` (disable) or `0 < SVy2_cut <= ny2` |
 
 
 ### Usage Example
