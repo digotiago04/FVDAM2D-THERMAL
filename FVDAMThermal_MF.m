@@ -73,8 +73,6 @@ Tx = (T_til(faces(:,2), :) - T_til(faces(:,4), :)) / l;
 Ty = (T_til(faces(:,3), :) - T_til(faces(:,1), :)) / h;
 K_ast_FVDAM = G0 * mean(x(:)) + [x(:)' * Tx; x(:)' * Ty] / (ny1*ny2);
 
-
-
 % PRINT OUTPUT (K*)
 fprintf('====================================================\n');
 fprintf('EFFECTIVE THERMAL CONDUCTIVITY MATRIX (K*)\n');
@@ -82,7 +80,7 @@ fprintf('====================================================\n');
 fprintf('FVDAM - MEAN-FIELD \n');
 disp(K_ast_FVDAM);
 
-% 3. POST-PROCESSING FOR PLOTS (FIELDS & CUTS) e % 4. PLOTTING
+% 3. POST-PROCESSING FOR PLOTS (FIELDS & CUTS)
 doVerticalCut   = (SVy1_cut >= 1 && SVy1_cut <= ny1);
 doHorizontalCut = (SVy2_cut >= 1 && SVy2_cut <= ny2);
 
@@ -123,7 +121,6 @@ Tnod = sumT ./ max(cntT,1);
 T_FVDAM = reshape(Tnod, [nNx, nNy])';           
 [Xg,Yg] = meshgrid((0:ny1)*l, (0:ny2)*h);
 
-
 % ----- Extract Cuts -----
 px = (SVy1_cut*l) - l/2;
 py = (SVy2_cut*h) - h/2;
@@ -143,7 +140,6 @@ if doHorizontalCut
 end
 
 % 4. PLOTTING
-
 % Total Temperature Field - FVDAM
 if field == 1
 figure();
