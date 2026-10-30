@@ -135,10 +135,6 @@ end
 % ----- Nodal Temperature -----
 invA = A \ eye(4);                        
 Taux = (Ttot_faces' - a*T00');
-% Tcell_tot = Ttot_faces;   
-% invA = A \ eye(4);                        
-% T00  = (ab*Tcell_tot')';                      
-% Taux = (Tcell_tot' - a*T00');                 
 TijM = (invA*Taux)';                          
 vert = [-l/2,-h/2; l/2,-h/2; l/2, h/2; -l/2, h/2];
 phi = zeros(4,4); 
