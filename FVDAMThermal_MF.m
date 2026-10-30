@@ -6,18 +6,18 @@ function FVDAMThermal_MF(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)
 clc;
 
 % 1. DIMENSIONS AND PARAMETERS
-L = 1; H = 1;             % Dimensions of the Representative Unit Cell (RUC)
+L = 1; H = 1;             % Dimensions of the repeating unit cell (RUC)
 Hy1_plot = 1;             % Macroscopic temperature gradient in y1 for plots
 Hy2_plot = 0;             % Macroscopic temperature gradient in y2 for plots
-l = L/ny1; h = H/ny2;       % Subvolume dimensions     
+l = L/ny1; h = H/ny2;     % Subvolume dimensions     
 R = sqrt(L*H*frac/pi);    % Radius of the inclusion
 points = 3;               % Stride for plot markers in cut profiles
 
 
 % 2. FINITE-VOLUME THEORY
-% Periodic boundary conditions and degrees of fredom
+% Periodic boundary conditions and degrees of freedom
 [i,j] = meshgrid(1:ny1,1:ny2);
-s = (i+(j-1)*ny1)';  % Total number of subvolumes 
+s = (i+(j-1)*ny1)';  % Subvolume numbering
 faces = [s(:),s(:)+ny1*ny2+1,s(:)+ny1,s(:)+ny1*ny2];
 faces(end-ny1+1:end,3) = faces(1:ny1,1);
 faces(ny1:ny1:end,2) = faces(1:ny1:end-ny1+1,4);
@@ -77,12 +77,12 @@ K_ast_FVDAM = G0 * mean(x(:)) + [x(:)' * Tx; x(:)' * Ty] / (ny1*ny2);
 
 % PRINT OUTPUT (K*)
 fprintf('====================================================\n');
-fprintf('EFFECTIVE THERMAL CONDUCTIVITY MATRICES (K*)\n');
+fprintf('EFFECTIVE THERMAL CONDUCTIVITY MATRIX (K*)\n');
 fprintf('====================================================\n');
 fprintf('FVDAM - MEAN-FIELD \n');
 disp(K_ast_FVDAM);
 
-% 4. POST-PROCESSING FOR PLOTS (FIELDS & CUTS)
+% 3. POST-PROCESSING FOR PLOTS (FIELDS & CUTS) e % 4. PLOTTING
 doVerticalCut   = (SVy1_cut >= 1 && SVy1_cut <= ny1);
 doHorizontalCut = (SVy2_cut >= 1 && SVy2_cut <= ny2);
 
@@ -98,11 +98,10 @@ Ttil_case = reshape(T_til(faces(:),kcase), ny1*ny2, 4);
 Ttot_faces = Xfaces*Hy1_plot + Yfaces*Hy2_plot + Ttil_case;
 
 
-% ----- Nodal Temperature -----
-Tcell_tot = Ttot_faces;   
+% ----- Nodal Temperature -----  
 invA = A \ eye(4);                        
-T00  = (ab*Tcell_tot')';                      
-Taux = (Tcell_tot' - a_vec*T00');                 
+T00  = (ab*Ttot_faces')';                      
+Taux = (Ttot_faces' - a_vec*T00');                 
 TijM = (invA*Taux)';                          
 vert = [-l/2,-h/2; l/2,-h/2; l/2, h/2; -l/2, h/2];
 phi = zeros(4,4); 
@@ -143,8 +142,7 @@ if doHorizontalCut
     TFVDAM_X = T00(svH);
 end
 
-
-% 5. PLOTTING
+% 4. PLOTTING
 
 % Total Temperature Field - FVDAM
 if field == 1
