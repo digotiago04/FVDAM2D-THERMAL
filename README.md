@@ -2,14 +2,14 @@
 
 This repository features MATLAB codes developed to compute the effective thermal conductivity of periodic composite materials. The implementations include both a mean-field formulation and an energy-based formulation for numerical homogenization.
 
-The models consider a square periodic unit cell containing a centered circular inclusion embedded in a surrounding matrix. Both the matrix phase and the inclusion (fiber) phase are assumed to be isotropic. In addition to evaluating the effective thermal conductivity matrix K<sup>*</sup>, the repository also provides visualization of the temperature field and microscopic temperature profiles along the coordinate directions.
+The models consider a square repeating unit cell (RUC) containing a centered circular inclusion embedded in a surrounding matrix. Both the matrix phase and the inclusion phase are assumed to be isotropic. In addition to evaluating the effective thermal conductivity matrix K<sup>*</sup>, the repository also provides visualization of the temperature field and microscopic temperature profiles along the coordinate directions.
 
 ---
 ## ⚙️ Features
 * Highly vectorized, high-performance MATLAB implementation, minimizing loops and leveraging efficient sparse operations.
 * Computes the effective thermal conductivity matrix K<sup>*</sup> from two unit macroscopic gradient tests.
 * Periodic boundary conditions automatically enforced on the square RUC for thermal homogenization.
-* Square periodic unit cell with a centered circular inclusion, where both matrix and inclusion are isotropic.
+* Square RUC with a centered circular inclusion, where both matrix and inclusion are isotropic.
 * Post-processing included: total temperature field visualization and microscopic temperature profiles along the coordinate directions.
 
 <p align="center">
@@ -23,14 +23,14 @@ The implementation of this tool was entirely developed in the MATLAB environment
 
 ---
 ## ▶️ Running the code
-FVDAM is a numerical approach based on the spatial discretization of the RUC into subvolumes (finite volumes). To calculate the effective thermal conductivity  this repository offers **two distinct mathematical formulations:**
+FVDAM is a numerical approach based on the spatial discretization of the RUC into subvolumes (finite volumes). To calculate the effective thermal conductivity, this repository offers **two distinct mathematical formulations:**
 
 * **Based on Mean-Field Theory:** Mean-field theory is based on the principle that the effective thermal properties observed experimentally arise from averaging relationships between local fields (temperature gradients and heat fluxes) within microscopically heterogeneous materials. Consequently, the macroscopic fields are defined as volume averages of their corresponding microscopic fields, and the effective thermal properties emerge naturally from these average relations.
 
-* **Based on Energy Theory:** In this approach, homogenization can be interpreted as the process of finding a homogeneous material that is energetically equivalent to a heterogeneous material with a complex microstructure. 
+* **Based on Energy Equivalence:** In this approach, homogenization can be interpreted as the process of finding a homogeneous material that is energetically equivalent to a heterogeneous material with a complex microstructure. 
 
 
-While these two theories take distinct mathematical routes, they are strictly equivalent. Both formulations lead to the exact same effective macroscopic properties, providing a double-validation of the numerical homogenization process.
+While these two approaches take distinct mathematical routes, they lead to numerically equivalent effective properties, identical to four decimal places in all cases analyzed, which provides a cross-validation of the numerical homogenization process. The FVDAM results were verified against the Locally-Exact Homogenization Theory (LEHT), whose implementation is available in the [LEHT-THERMAL](https://github.com/digotiago04/LEHT-THERMAL) repository.
 
 
 ### Syntax
@@ -40,7 +40,7 @@ The [`FVDAMThermal_MF.m`](./FVDAMThermal_MF.m) and [`FVDAMThermal_EB.m`](./FVDAM
 * `FVDAMThermal_MF(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)`
 * `FVDAMThermal_EB(ny1, ny2, k_m, k_i, frac, field, SVy1_cut, SVy2_cut)`
 ---
-##  Inputs parameters declaration - FVDAM
+##  Input parameters - FVDAM
 
 Both functions share the following input arguments:
 
@@ -50,7 +50,7 @@ Both functions share the following input arguments:
 | `ny2` | `int` | Number of subvolumes along the $y_2$ direction. |
 | `k_m` | `float` | Thermal conductivity of the matrix material $[\text{W}/(\text{m}\cdot\text{K})]$. |
 | `k_i` | `float` | Thermal conductivity of the circular inclusion $[\text{W}/(\text{m}\cdot\text{K})]$. |
-| `frac` | `float` | Inclusion volume fraction ($0 \le \text{frac} < 1$). |
+| `frac` | `float` | Inclusion volume fraction ($0 \le \text{frac} < \pi/4 \approx 0.785$). |
 | `field` | `int` | Flag to generate the 2D total temperature surface plot (`1` = active, `0` = disabled). |
 | `SVy1_cut` | `int` | Subvolume index along $y_1$ to extract the vertical temperature profile. |
 | `SVy2_cut` | `int` | Subvolume index along $y_2$ to extract the horizontal temperature profile. |
@@ -71,18 +71,18 @@ FVDAMThermal_MF(80, 80, 0.5, 4.5, 0.6, 1, 35, 45);
 
 ```text
 ====================================================
-EFFECTIVE THERMAL CONDUCTIVITY MATRICES (K*)
+EFFECTIVE THERMAL CONDUCTIVITY MATRIX (K*)
 ====================================================
 FVDAM - ENERGY BASED 
-    1.1824   -0.0000
-   -0.0000    1.1824
+       1.4828  -5.6477e-12
+  -5.7203e-12       1.4828
 
 ====================================================
-EFFECTIVE THERMAL CONDUCTIVITY MATRICES (K*)
+EFFECTIVE THERMAL CONDUCTIVITY MATRIX (K*)
 ====================================================
 FVDAM - MEAN-FIELD 
-    1.1824   -0.0000
-   -0.0000    1.1824
+       1.4828   2.2818e-15
+   2.2205e-15       1.4828
 ```
 
 
